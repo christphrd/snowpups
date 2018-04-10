@@ -13,6 +13,7 @@
 
 require 'net/http'
 require 'json'
+require 'hide'
 
 def coin_toss
   rand > 0.5
@@ -20,7 +21,7 @@ end
 
 def createDogs(sled)
   breed = Faker::Dog.unique.breed
-  url = "http://api.giphy.com/v1/gifs/search?q=#{breed}&api_key=tS0j6iOtV0gPmxS7vI3cBYWzPrJK3ozs&limit=1"
+  url = "http://api.giphy.com/v1/gifs/search?q=#{breed}&api_key=#{API_KEY}&limit=1"
   resp = Net::HTTP.get_response(URI.parse(url))
   buffer = resp.body
   result = JSON.parse(buffer)
